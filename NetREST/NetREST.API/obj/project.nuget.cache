@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XhKFzPukVQBR6+jpuJpk0VQppuIHfHP115BEVhri6iN02qRV+jHJBFju9PFZb+d/FOHc6vVcGQ8NaoFtQFTcbQ==",
+  "dgSpecHash": "FxOewYkiHqx6WaSKayVPCCKvqg2ji9Tfvv7obYhH7JhHPjtWOYmsLivx0H3xUpE2jmbS6aNUDx6Rpm1IFuvkpg==",
   "success": true,
   "projectFilePath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.API/NetREST.API.csproj",
   "expectedPackageFiles": [

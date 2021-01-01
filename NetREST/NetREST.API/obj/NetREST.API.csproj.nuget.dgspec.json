@@ -93,6 +93,9 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DAL/NetREST.DAL.csproj": {
+                "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DAL/NetREST.DAL.csproj"
+              },
               "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj": {
                 "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj"
               },
@@ -127,6 +130,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -323,6 +329,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

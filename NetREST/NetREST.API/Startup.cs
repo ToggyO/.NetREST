@@ -1,4 +1,5 @@
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,8 @@ namespace NetREST.API
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseNpgsql(dbSettings.DbConnectionString));
 
+            // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(ValidateModelAttribute));
@@ -57,10 +60,13 @@ namespace NetREST.API
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseDefaultFiles();
-            // app.UseStaticFiles();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

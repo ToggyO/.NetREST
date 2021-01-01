@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NetREST.DAL\NetREST.DAL.csproj" />
     <ProjectReference Include="..\NetREST.Domain\NetREST.Domain.csproj" />
     <ProjectReference Include="..\NetREST.DTO\NetREST.DTO.csproj" />
   </ItemGroup>
