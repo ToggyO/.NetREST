@@ -1,0 +1,192 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj": {}
+  },
+  "projects": {
+    "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/NetREST.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/NetREST.Common.csproj",
+        "projectName": "NetREST.Common",
+        "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/NetREST.Common.csproj",
+        "packagesPath": "/home/oleg/.nuget/packages/",
+        "outputPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/oleg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "http://nuget.magora.team/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Text.Json": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj",
+        "projectName": "NetREST.DTO",
+        "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj",
+        "packagesPath": "/home/oleg/.nuget/packages/",
+        "outputPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/oleg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "http://nuget.magora.team/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/NetREST.Common.csproj": {
+                "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Common/NetREST.Common.csproj"
+              },
+              "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/NetREST.Domain.csproj": {
+                "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/NetREST.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/NetREST.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/NetREST.Domain.csproj",
+        "projectName": "NetREST.Domain",
+        "projectPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/NetREST.Domain.csproj",
+        "packagesPath": "/home/oleg/.nuget/packages/",
+        "outputPath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/oleg/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "http://nuget.magora.team/nuget": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

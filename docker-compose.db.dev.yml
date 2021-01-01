@@ -1,0 +1,15 @@
+version: '3.5'
+services:
+  NetREST-postgres-dev:
+    image: postgres:12.1
+    container_name: NetREST-postgres-dev
+    restart: always
+    ports:
+      - ${DB_EXTERNAL_PORT}:${DB_PORT}
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_HOST=${DB_HOST}
+    volumes:
+      - './volume-posgtres-dev:/var/lib/postgresql/data'

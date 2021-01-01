@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetREST.Common\NetREST.Common.csproj" />
+    <ProjectReference Include="..\NetREST.BLL\NetREST.BLL.csproj" />
+    <ProjectReference Include="..\NetREST.DAL\NetREST.DAL.csproj" />
+    <ProjectReference Include="..\NetREST.Domain\NetREST.Domain.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+</Project>
