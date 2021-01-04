@@ -60,36 +60,6 @@ namespace NetREST.API.Handlers.Users.Implemetation
             };
         }
 
-        public async Task<Response<UserDTO>> CreateUser(UserCreateDTO dto)
-        {
-            UserModel user = await _repository.GetUserByEmail(dto.Email);
-            if (user != null)
-                return new ErrorResponse<UserDTO>
-                {
-                    HttpStatusCode = HttpStatusCode.NotFound,
-                    ErrorCode = ErrorCodes.Business.EmailExists,
-                    ErrorMessage = ErrorMessages.Business.EmailExists,
-                    Errors = new Error[0],
-                };
-
-            UserModel userEntity = new UserModel
-            {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Age = dto.Age,
-                Email = dto.Email,
-                Password = dto.Password,
-            };
-
-            user = await _repository.Create(userEntity);
-            UserDTO result = _mapper.Map<UserModel, UserDTO>(user);
-
-            return new Response<UserDTO>
-            {
-                ResultData = result
-            };
-        }
-
         public async Task<Response<UserDTO>> UpdateUser(int id, UserDTO dto)
         {
             var userEntity = await _repository.GetById(id);

@@ -632,6 +632,7 @@
       "NetREST.BLL/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.0",
+          "NetREST.DAL": "1.0.0",
           "NetREST.DTO": "1.0.0",
           "NetREST.Domain": "1.0.0"
         },

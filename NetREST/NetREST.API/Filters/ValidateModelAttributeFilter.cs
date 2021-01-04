@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using FluentValidation;
@@ -41,7 +42,7 @@ namespace NetREST.API.Filters
 			    Name = x.Name,
 			    Value = context.ActionArguments.FirstOrDefault(y => y.Key == x.Name).Value,
 			    ValueType = x.ParameterType,
-			    // IsRequired = x.ParameterInfo.CustomAttributes.Any(y => y.AttributeType == typeof(RequiredAttribute))
+			    IsRequired = x.ParameterInfo.CustomAttributes.Any(y => y.AttributeType == typeof(RequiredAttribute))
 		    });
 	    
 	    protected ValidationResult Validate(IValidatorFactory factory, Type modelType, object model)

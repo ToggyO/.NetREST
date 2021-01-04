@@ -39,14 +39,15 @@ namespace NetREST.API
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseNpgsql(dbSettings.DbConnectionString));
 
-            // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(ValidateModelAttribute));
                 options.Filters.Add(typeof(StatusCodeFilter));
             }).AddFluentValidation(
-                fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
+                fv =>
+                    fv.RegisterValidatorsFromAssemblyContaining<DTO.DependencyInjectionModule>());
 
             services.AddSingleton(MappingConfig.GetMapper());
 			

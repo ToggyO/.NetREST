@@ -30,3 +30,5 @@
 /home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/obj/Debug/netcoreapp3.1/NetREST.BLL.csproj.CopyComplete
 /home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/obj/Debug/netcoreapp3.1/NetREST.BLL.dll
 /home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/obj/Debug/netcoreapp3.1/NetREST.BLL.pdb
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/bin/Debug/netcoreapp3.1/NetREST.DAL.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/bin/Debug/netcoreapp3.1/NetREST.DAL.pdb

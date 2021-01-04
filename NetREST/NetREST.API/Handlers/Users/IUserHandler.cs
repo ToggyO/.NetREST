@@ -9,7 +9,6 @@ namespace NetREST.API.Handlers.Users
     {
         Task<Response<PaginationModel<UserDTO>>> GetList(PaginationModel model);
         Task<Response<UserDTO>> GetUserById(int id);
-        Task<Response<UserDTO>> CreateUser(UserCreateDTO dto);
         Task<Response<UserDTO>> UpdateUser(int id, UserDTO dto);
         Task<Response<UserDTO>> DeleteUser(int id);
     }

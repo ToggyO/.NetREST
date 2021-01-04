@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NetREST.API.Handlers.Users;
 using NetREST.Common.Pagination;
@@ -9,6 +10,7 @@ using NetREST.DTO.User;
 namespace NetREST.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/users")]
     public class UserController : ControllerBase
     {
@@ -20,6 +22,7 @@ namespace NetREST.API.Controllers
 	    }
 
 		[HttpGet]
+		[AllowAnonymous]
 		public async Task<Response<PaginationModel<UserDTO>>> GetList([FromQuery] PaginationModel model)
 		{
 			return await _handler.GetList(model);
@@ -29,12 +32,6 @@ namespace NetREST.API.Controllers
 		public async Task<Response<UserDTO>> Get([Required, FromRoute] int id)
 		{
 			return await _handler.GetUserById(id);
-		}
-
-		[HttpPost]
-		public async Task<Response<UserDTO>> Post(UserCreateDTO user)
-		{
-			return await _handler.CreateUser(user);
 		}
 
 		[HttpPut("{id}")]
