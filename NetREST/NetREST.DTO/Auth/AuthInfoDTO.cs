@@ -5,5 +5,6 @@ namespace NetREST.DTO.Auth
     public class AuthInfoDTO
     {
         public UserDTO User { get; set; }
+        public TokenDTO Token { get; set; }
     }
 }

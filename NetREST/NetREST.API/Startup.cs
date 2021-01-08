@@ -1,5 +1,7 @@
+using System;
+using System.Text;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using NetREST.API.Filters;
 using NetREST.BLL.Mappings;
 using NetREST.Common.Settings;
@@ -18,14 +21,24 @@ namespace NetREST.API
     {
         public IConfiguration Configuration { get; }
 		
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+                .AddEnvironmentVariables();
+            
+            Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var apiSettings = Configuration.GetSection("AppSettings:APISettings").Get<ApiSettings>();
+            Console.WriteLine(apiSettings.PublicKey);
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
+            services.Configure<ApiSettings>(Configuration.GetSection("AppSettings:APISettings"));
 
             var dbSettings = new DbSettings
             {
@@ -39,8 +52,31 @@ namespace NetREST.API
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseNpgsql(dbSettings.DbConnectionString));
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    var apiSettings = Configuration.GetSection("AppSettings:APISettings").Get<ApiSettings>();
+                    // options.RequireHttpsMetadata = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ClockSkew = TimeSpan.Zero,
+                        
+                        ValidateAudience = true,
+                        ValidAudience = apiSettings.AUDIENCE,
+                        
+                        ValidateIssuer = true,
+                        ValidIssuer = apiSettings.ISSUER,
+                        
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(apiSettings.PublicKey)),
+                        
+                        // To allow return custom response for expired token
+                        ValidateLifetime = false,
+                    };
+                });
 
+            services.AddAuthorization();
+            
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(ValidateModelAttribute));

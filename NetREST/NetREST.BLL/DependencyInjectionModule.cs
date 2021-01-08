@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using NetREST.BLL.Services.Auth;
-using NetREST.BLL.Services.Auth.Implementation;
+using NetREST.BLL.Factories;
+using NetREST.BLL.Factories.Implementation;
+using NetREST.BLL.Services.Tokens;
+using NetREST.BLL.Services.Tokens.Implementation;
 using NetREST.Common.Extensions;
 
 namespace NetREST.BLL
@@ -12,7 +14,8 @@ namespace NetREST.BLL
         {
             DAL.DependencyInjectionModule.Load(services);
 
-            services.Add<IAuthService, AuthService>(serviceLifetime);
+            services.Add<ITokensFactory, TokensFactory>(serviceLifetime);
+            services.Add<ITokensService, TokensService>(serviceLifetime);
         }
     }
 }

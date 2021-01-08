@@ -1,0 +1,17 @@
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.DTO.deps.json
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.DTO.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/ref/NetREST.DTO.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.DTO.pdb
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.Common.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.Domain.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.Common.pdb
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/bin/Debug/net5.0/NetREST.Domain.pdb
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.csprojAssemblyReference.cache
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.GeneratedMSBuildEditorConfig.editorconfig
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.AssemblyInfoInputs.cache
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.AssemblyInfo.cs
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.csproj.CoreCompileInputs.cache
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.csproj.CopyComplete
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/ref/NetREST.DTO.dll
+/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/obj/Debug/net5.0/NetREST.DTO.pdb

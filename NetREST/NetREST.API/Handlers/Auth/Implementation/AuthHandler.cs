@@ -1,6 +1,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
+using NetREST.BLL.Services.Tokens;
 using NetREST.Common.Errors;
 using NetREST.Common.Response;
 using NetREST.DAL.Repository.Users;
@@ -14,33 +15,29 @@ namespace NetREST.API.Handlers.Auth.Implementation
     public class AuthHandler : IAuthHandler
     {
         private readonly IUserRepository _userRepository;
+        private readonly ITokensService _tokensService;
         private readonly IMapper _mapper;
         
         public AuthHandler(IUserRepository userRepository,
-            IMapper mapper)
+            ITokensService tokensService, IMapper mapper)
         {
             _userRepository = userRepository;
+            _tokensService = tokensService;
             _mapper = mapper;
         }
         
         public async Task<Response<AuthInfoDTO>> Login(AuthDTO dto)
         {
-            UserModel userEntity = await _userRepository.GetUserByEmail(dto.Email);
-
-            return new Response<AuthInfoDTO>
-            {
-                ResultData = new AuthInfoDTO
-                {
-                    User = _mapper.Map<UserModel, UserDTO>(userEntity),
-                }
-            };
+            var result = await _tokensService.Authenticate(dto);
+            return result;
         }
 
-        public Response Logout()
+        public async Task<Response<TokenDTO>> RefreshToken(string token)
         {
-            return new Response();
+            var result = await _tokensService.RefreshToken(token);
+            return result;
         }
-        
+
         public async Task<Response<UserDTO>> SignUp(SignUpDTO dto)
         {
             UserModel user = await _userRepository.GetUserByEmail(dto.Email);

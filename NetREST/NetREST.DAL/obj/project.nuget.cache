@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "a8+uRNxK2SQbo6hwwoIjVkJYxuJ2kc2PZ2tnWKa+hAU5QR5PdsljbcNzLCXLNHKB8SM+pLMWVAcCvLc44VAliA==",
+  "dgSpecHash": "iViiY6pw/ZEE7prOJBYsSrZ7crr1wDhCmmBu3VQHA8y1P3CHNKqmmZlQYDWl2NVvreOf+zAMs2XO5O8VdHedeA==",
   "success": true,
   "projectFilePath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DAL/NetREST.DAL.csproj",
   "expectedPackageFiles": [

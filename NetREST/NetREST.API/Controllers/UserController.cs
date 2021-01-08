@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NetREST.API.Filters;
 using NetREST.API.Handlers.Users;
 using NetREST.Common.Pagination;
 using NetREST.Common.Response;
@@ -10,7 +11,7 @@ using NetREST.DTO.User;
 namespace NetREST.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    [AuthorizationFilter]
     [Route("api/users")]
     public class UserController : ControllerBase
     {

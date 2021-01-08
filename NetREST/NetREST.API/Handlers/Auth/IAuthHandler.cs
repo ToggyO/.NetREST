@@ -9,7 +9,7 @@ namespace NetREST.API.Handlers.Auth
     public interface IAuthHandler
     {
         Task<Response<AuthInfoDTO>> Login(AuthDTO dto);
-        Response Logout();
+        Task<Response<TokenDTO>> RefreshToken(string token);
         Task<Response<UserDTO>> SignUp(SignUpDTO dto);
     }
 }

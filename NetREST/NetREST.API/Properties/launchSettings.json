@@ -21,6 +21,11 @@
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
+        "AppSettings:APISettings:PublicKey": "AAAAB3NzaC1yc2EAAAADAQABAAABAQCkkTqYqjfy11DUtK6rhiQutHiBnQgNVq",
+        "AppSettings:APISettings:ISSUER": "NetRESTIssuer",
+        "AppSettings:APISettings:AUDIENCE": "NetRESTAudience",
+        "AppSettings:APISettings:RefreshTokenExpiresInMinutes": "10080",
+        "AppSettings:APISettings:AccessTokenExpiresInMinutes": "60",
         "DB_HOST": "localhost",
         "DB_PORT": "15432",
         "DB_EXTERNAL_PORT": "5432",
