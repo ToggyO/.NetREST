@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ung0GKdQySA9m0ESpxhUNtInJuM5J3AfbRL+WEsM9qHBlWpih/+VsGh1yj8pY0NLMdoxbMgLsv2Go1CqqX+Eew==",
+  "dgSpecHash": "BoEYjsYrd7LpOBWsgcJQwiM+ECYl4IUIegRJXyM3bA8mkInujitcpgRmBHU8IuA27AcwtZg2AUbvl2hB7JYIWg==",
   "success": true,
   "projectFilePath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.DTO/NetREST.DTO.csproj",
   "expectedPackageFiles": [

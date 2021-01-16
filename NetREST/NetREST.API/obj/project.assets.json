@@ -433,7 +433,10 @@
         },
         "runtime": {
           "bin/placeholder/NetREST.BLL.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "NetREST.Common/1.0.0": {
         "type": "project",
@@ -490,7 +493,10 @@
         },
         "runtime": {
           "bin/placeholder/NetREST.DTO.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },

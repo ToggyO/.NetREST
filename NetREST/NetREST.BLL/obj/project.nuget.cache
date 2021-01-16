@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Or/VmPsDHBuzOSjZx4LaP4gp+5l3vGE3OVghCUKVgoTlVmJkGyYan+vZCS/l0KqYDJMNBKhgDSfz+5VxW/ximA==",
+  "dgSpecHash": "JZoc1FqN5rBW11f06Gl2hV55Kw1L9zDqMFTsnEvKHbvCcfVNrOZujbHfxlGjaOogYjQF1UaKXjBmHPOmoR31iA==",
   "success": true,
   "projectFilePath": "/home/oleg/Projects/dotNET/netrest-backend/NetREST/NetREST.BLL/NetREST.BLL.csproj",
   "expectedPackageFiles": [

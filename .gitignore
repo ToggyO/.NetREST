@@ -2,3 +2,7 @@
 .vscode
 .git
 volume-posgtres-dev
+NetREST/**/bin
+NetREST/**/obj
+NetREST/.idea
+NetREST/.vscode
