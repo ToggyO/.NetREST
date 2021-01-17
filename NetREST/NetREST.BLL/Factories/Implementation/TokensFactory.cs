@@ -66,7 +66,6 @@ namespace NetREST.BLL.Factories.Implementation
 
         private string EncodeToken(JwtSecurityToken token)
         {
-            Console.WriteLine($"Token before encoding: {token}");
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 

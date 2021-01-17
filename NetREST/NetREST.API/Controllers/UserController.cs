@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NetREST.API.Filters;
 using NetREST.API.Handlers.Users;
-using NetREST.Common.Pagination;
+using NetREST.Common.Models.Pagination;
 using NetREST.Common.Response;
 using NetREST.DTO.User;
 

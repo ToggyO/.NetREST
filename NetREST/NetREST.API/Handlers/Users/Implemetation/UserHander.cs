@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using NetREST.Common.Errors;
-using NetREST.Common.Pagination;
+using NetREST.Common.Models.Pagination;
 using NetREST.Common.Response;
 using NetREST.DAL.Repository.Users;
 using NetREST.Domain.User;

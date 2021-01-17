@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using NetREST.Common.Pagination;
+using NetREST.Common.Models.Pagination;
 using NetREST.Domain.User;
 
 namespace NetREST.DAL.Repository.Users

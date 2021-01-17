@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using NetREST.Common.Pagination;
+using NetREST.Common.Models.Pagination;
 using NetREST.Common.Response;
 using NetREST.DTO.User;
 

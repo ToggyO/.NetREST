@@ -1,0 +1,21 @@
+.wrapper {
+    display: flex;
+}
+
+.actions {
+    width: 50%;
+}
+
+.groups {
+    width: 50%;
+}
+
+.group-list-item {
+    padding: 10px 0;
+    transition: color .5s ease;
+    cursor: pointer;
+}
+
+.group-list-item:hover {
+    color: blue;
+}

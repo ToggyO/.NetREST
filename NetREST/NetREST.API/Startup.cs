@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using NetREST.API.Filters;
 using NetREST.BLL.Mappings;
+using NetREST.BLL.Services.WebSocket;
 using NetREST.Common.Settings;
 using NetREST.DAL;
 
@@ -19,6 +21,8 @@ namespace NetREST.API
 {
     public class Startup
     {
+        private const string MyAllowOrigins = "_myAllowOrigins";
+
         public IConfiguration Configuration { get; }
 		
         public Startup(IWebHostEnvironment env)
@@ -35,8 +39,18 @@ namespace NetREST.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var apiSettings = Configuration.GetSection("AppSettings:APISettings").Get<ApiSettings>();
-            Console.WriteLine(apiSettings.PublicKey);
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowOrigins,
+                    builder => builder
+                        .WithOrigins("http://localhost:63342")
+                        // .AllowAnyOrigin()
+                        .AllowCredentials()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                    );
+            });
+            
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
             services.Configure<ApiSettings>(Configuration.GetSection("AppSettings:APISettings"));
 
@@ -51,7 +65,7 @@ namespace NetREST.API
 
             services.AddDbContext<ApplicationContext>(options => 
                 options.UseNpgsql(dbSettings.DbConnectionString));
-
+            
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -73,10 +87,27 @@ namespace NetREST.API
                         // To allow return custom response for expired token
                         ValidateLifetime = false,
                     };
-                });
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+                            var path = context.HttpContext.Request.Path;
+                            if (!String.IsNullOrEmpty(path)
+                                && path.StartsWithSegments("/api/ws"))
+                            {
+                                context.Token = accessToken;
+                            }
 
+                            return Task.CompletedTask;
+                        }
+                    };
+                });
+            
             services.AddAuthorization();
             
+            services.AddSignalR();
+
             services.AddControllers(options =>
             {
                 options.Filters.Add(typeof(ValidateModelAttribute));
@@ -97,6 +128,8 @@ namespace NetREST.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(MyAllowOrigins);
+            
             app.UseDefaultFiles();
             app.UseStaticFiles();
             
@@ -108,6 +141,7 @@ namespace NetREST.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ChatHubService>("api/ws/chat");
             });
         }
     }

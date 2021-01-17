@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace NetREST.Common.Pagination
+namespace NetREST.Common.Models.Pagination
 {
     public class PaginationModel
     {

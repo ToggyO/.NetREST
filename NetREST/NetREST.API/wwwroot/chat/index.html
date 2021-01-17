@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignalR Chat</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+    <body>
+        <div class="wrapper">
+            <div class="actions">
+                <div id="loginBlock">
+                    Введите логин:<br />
+                    <input id="userName" type="text" />
+                    <input id="userPassword" type="text" />
+                    <input id="loginBtn" type="button" value="Войти" />
+                </div><br />
+
+                <div id="inputForm">
+                    <input type="text" id="message" placeholder="Введите сообщение" />
+                    <input type="text" id="receiver" placeholder="Введите получателя" />
+                    <input type="button" id="sendBtn" disabled value="Отправить" />
+                </div>
+            </div>
+
+            <div class="groups">
+                <div class="create-group">
+                    <h5>Создать группу</h5>
+                    <div>
+                        <input type="text" id="create-group-input" placeholder="Введите название группы" />
+                        <input type="button" id="createGroupBtn" value="Создать" />
+                    </div>
+                </div>
+                <div class="groups-list"></div>
+            </div>
+
+        </div>
+        
+        <div id="chatroom"></div>
+        
+        <script src="https://unpkg.com/@microsoft/signalr@3.1.0/dist/browser/signalr.min.js"></script>
+        <script src="./js/scripts.js"></script>
+    </body>
+</html>

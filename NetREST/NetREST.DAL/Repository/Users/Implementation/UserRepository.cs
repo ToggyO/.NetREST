@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using NetREST.Common.Pagination;
+using NetREST.Common.Models.Pagination;
 using NetREST.Domain.User;
 
 namespace NetREST.DAL.Repository.Users.Implementation

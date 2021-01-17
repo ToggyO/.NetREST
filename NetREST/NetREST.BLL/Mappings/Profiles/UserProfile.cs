@@ -1,4 +1,5 @@
 using AutoMapper;
+using NetREST.Common.Models.Chat;
 using NetREST.Domain.User;
 using NetREST.DTO.User;
 
@@ -10,6 +11,7 @@ namespace NetREST.BLL.Mappings.Profiles
         {
             CreateMap<UserModel, UserDTO>().ReverseMap();
             CreateMap<UserModel, UserCreateDTO>().ReverseMap();
+            CreateMap<UserModel, ChatUser>().ReverseMap();
         }
     }
 }
