@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
@@ -9,13 +10,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using NetREST.API.Extensions;
 using NetREST.API.Filters;
 using NetREST.BLL.Mappings;
 using NetREST.BLL.Services.WebSocket;
 using NetREST.Common.Settings;
 using NetREST.DAL;
+using NetREST.DTO;
 
 namespace NetREST.API
 {
@@ -43,9 +48,9 @@ namespace NetREST.API
             {
                 options.AddPolicy(MyAllowOrigins,
                     builder => builder
-                        .WithOrigins("http://localhost:63342")
-                        // .AllowAnyOrigin()
-                        .AllowCredentials()
+                        // .WithOrigins("http://localhost:63342")
+                        .AllowAnyOrigin()
+                        // .AllowCredentials()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                     );
@@ -60,11 +65,13 @@ namespace NetREST.API
                 DB_PORT = Configuration.GetSection("DB_PORT").Value,
                 DB_USER = Configuration.GetSection("DB_USER").Value,
                 DB_PASSWORD = Configuration.GetSection("DB_PASSWORD").Value,
-                DB_NAME = Configuration.GetSection("DB_NAME").Value,
+                DB_NAME = Configuration.GetSection("DB_NAME").Value
             };
 
-            services.AddDbContext<ApplicationContext>(options => 
-                options.UseNpgsql(dbSettings.DbConnectionString));
+            services.AddDbContext<ApplicationDbContext>(options => 
+                options.UseNpgsql(dbSettings.DbConnectionString,
+                    optionsBuilder =>
+                        optionsBuilder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -114,35 +121,62 @@ namespace NetREST.API
                 options.Filters.Add(typeof(StatusCodeFilter));
             }).AddFluentValidation(
                 fv =>
-                    fv.RegisterValidatorsFromAssemblyContaining<DTO.DependencyInjectionModule>());
+                {
+                    ValidatorConfigurationOverload.Override();
+                    fv.RegisterValidatorsFromAssemblyContaining<DTO.DependencyInjectionModule>();
+                });
+            services.AddDirectoryBrowser();
 
             services.AddSingleton(MappingConfig.GetMapper());
 			
             DependencyInjectionModule.Load(services);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app,
+            IWebHostEnvironment env,
+            ILogger<Startup> logger)
         {
+            logger.LogInformation("Enter Configure");
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseHsts();
+                app.UseHttpsRedirection();
+            }
 
-            app.UseCors(MyAllowOrigins);
-            
+            logger.LogInformation("Static files");
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.WebRootPath, "chat")),
+                RequestPath = "/chat"
+            });
             
+            logger.LogInformation("Routing");
             app.UseRouting();
+            
+            logger.LogInformation("Cors");
+            app.UseCors(MyAllowOrigins);
 
+            logger.LogInformation("Auth middleware");
             app.UseAuthentication();
             app.UseAuthorization();
 
+            logger.LogInformation("EnsureMigrationOfContext");
+            app.EnsureMigrationOfContext<ApplicationDbContext>();
+            
+            logger.LogInformation("Endpoints");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHubService>("api/ws/chat");
             });
+            logger.LogInformation("Exit Configure");
         }
     }
 }

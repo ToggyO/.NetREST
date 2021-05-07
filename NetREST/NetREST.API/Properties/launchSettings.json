@@ -18,7 +18,7 @@
     "NetREST.API": {
       "commandName": "Project",
       "launchBrowser": false,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "applicationUrl": "https://172.16.1.122:5001;http://172.16.1.122:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "AppSettings:APISettings:PublicKey": "AAAAB3NzaC1yc2EAAAADAQABAAABAQCkkTqYqjfy11DUtK6rhiQutHiBnQgNVq",

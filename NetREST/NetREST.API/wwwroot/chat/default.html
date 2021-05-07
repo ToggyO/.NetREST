@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SignalR Chat</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+    <body>
+        <div id="portal" class="portal"></div>
+
+        <div class="wrapper">
+            <div class="chat-container">
+                <div class="char-room__container">
+                    <div id="chatroom" class="chat-room"></div>
+                </div>
+                <div id="inputForm" class="input-form">
+                    Общаться:
+                    <textarea id="textMessage" placeholder="Введите сообщение"></textarea>
+                    <div class="chat-controls">
+                        <input type="button" id="sendBtn" value="Отправить" disabled />
+                        <input type="button" id="leaveGroupBtn" value="Покинуть группу" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wrapper">
+            <div class="actions">
+                <div id="regBlock" class="actions__controls">
+                    Создать пользователя:<br />
+                    <input id="firstName" type="text" placeholder="Введите имя" />
+                    <input id="regEmail" type="text" placeholder="Введите почту" />
+                    <input id="regPassword" type="text" placeholder="Введите пароль" />
+                    <input id="regBtn" type="button" value="Создать" />
+                </div>
+                
+                <div id="loginBlock" class="actions__controls" style="padding-top: 40px">
+                    Войти:<br />
+                    <input id="userName" type="text" placeholder="Введите логин" />
+                    <input id="userPassword" type="text" placeholder="Введите пароль" />
+                    <input id="loginBtn" type="button" value="Войти" />
+                </div><br />
+            </div>
+
+            <div class="groups">
+                <div class="create-group">
+                    <h5>Создать новую комнату:</h5>
+                    <div>
+                        <input type="text" id="create-group-input" placeholder="Введите название комнаты" />
+                        <input type="button" id="createGroupBtn" value="Создать" />
+                    </div>
+                </div>
+                <h5>Комнаты:</h5>
+                <div class="groups-list"></div>
+            </div>
+        </div>
+        
+        <script src="https://unpkg.com/@microsoft/signalr@3.1.0/dist/browser/signalr.min.js"></script>
+        <script src="./js/scripts.js"></script>
+    </body>
+</html>
