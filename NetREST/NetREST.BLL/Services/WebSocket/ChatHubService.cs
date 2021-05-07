@@ -54,35 +54,44 @@ namespace NetREST.BLL.Services.WebSocket
 
         public async Task EnterGroup(string groupId)
         {
-            var meta = GetCleanClientMeta(groupId);
-            await Groups.AddToGroupAsync(Context.ConnectionId, meta.GroupId);
-            await Clients.Group(meta.GroupId)
-                .SendAsync(ChatEvents.Notify, $"{meta.UserName} joined to group!");
+            ChatClientMeta meta = _storage.GetUserByConnectionId(Context.ConnectionId);
+            var group = _storage.GetGroupById(groupId);
+            if (group == null)
+                throw new Exception("Group with the same id doesnt exists");
+
+            _storage.UpdateConnection(Context.ConnectionId, meta.User, group.Id);
+            await Groups.AddToGroupAsync(Context.ConnectionId, group.Id);
+            await Clients.Caller.SendAsync(ChatEvents.GetGroupById, group);
+            await Clients.Caller.SendAsync(ChatEvents.Notify, $"You joined to '{group.Name}' group!");
+            await Clients.OthersInGroup(group.Id)
+                .SendAsync(ChatEvents.Notify, $"{meta.User.FirstName} joined to group!");
         }
 
         public async Task LeaveGroup(string groupId)
         {
             ChatClientMeta meta = _storage.GetUserByConnectionId(Context.ConnectionId);
-            string userName = meta.User.FirstName;
+            var group = _storage.GetGroupById(groupId);
+            if (group == null)
+                throw new Exception("Group with the same id doesnt exists");
+            
             _storage.UpdateConnection(Context.ConnectionId, meta.User, null);
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, groupId);
-            NofifyAboutLeaving(groupId, userName);
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, group.Id);
+            await Clients.Caller.SendAsync(ChatEvents.GroupLeft, group);
+            NofifyAboutLeaving(group.Id, meta.User.FirstName);
         }
 
-        public async Task SendMessage(SimpleMessage model)
+        public async Task SendMessage(string message)
         {
             ChatClientMeta meta = _storage.GetUserByConnectionId(Context.ConnectionId);
             if (meta.GroupId == null)
                 throw new HubException("Please, join group if you want to send message");
 
-            await Clients.Group(meta.GroupId).SendAsync(ChatEvents.SendMessage, model);
+            await Clients.Group(meta.GroupId).SendAsync(ChatEvents.SendMessage,
+                new SimpleMessage { User = meta.User.FirstName, Message = message });
         }
 
-        public async Task GetGroupsList()
-        {
-             var groups = _storage.GetGroups();
-             await Clients.Caller.SendAsync(ChatEvents.GetGroupsList, groups);
-        }
+        public async Task GetGroupsList() =>
+            await Clients.Caller.SendAsync(ChatEvents.GetGroupsList, _storage.GetGroups());
 
         public async Task CreateGroup(string groupName)
         {
@@ -95,12 +104,10 @@ namespace NetREST.BLL.Services.WebSocket
         private CleanClientMeta GetCleanClientMeta(string groupId = "")
         {
             ChatClientMeta meta = _storage.GetUserByConnectionId(Context.ConnectionId);
-            string userName = meta.User.FirstName;
-            string id = meta.GroupId;
             return new CleanClientMeta
             {
-                UserName = userName,
-                GroupId = !String.IsNullOrEmpty(groupId) ? groupId : id,
+                UserName = meta.User.FirstName,
+                GroupId = !String.IsNullOrEmpty(groupId) ? groupId : meta.GroupId
             };
         }
 

@@ -20,7 +20,7 @@ namespace NetREST.Common.Models.Chat.ChatHubStorage
                 {
                     Id = groupId,
                     Name = groupName,
-                    Users = new List<ChatUser>(),
+                    Users = new List<ChatUser>()
                 };
                 _groups.Add(groupId, group);
                 return groupId;
@@ -51,6 +51,16 @@ namespace NetREST.Common.Models.Chat.ChatHubStorage
             lock (_groups)
             {
                 return _groups.Values.ToList();
+            }
+        }
+
+        public ChatGroup GetGroupById(string id)
+        {
+            lock (_groups)
+            {
+                ChatGroup group;
+                _groups.TryGetValue(id, out group);
+                return group;
             }
         }
     }

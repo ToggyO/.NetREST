@@ -16,10 +16,7 @@ namespace NetREST.Common.Models.Chat.ChatHubStorage
             {
                 if (!_connections.TryGetValue(key, out ChatClientMeta meta))
                 {
-                    meta = new ChatClientMeta
-                    {
-                        User = user,
-                    };
+                    meta = new ChatClientMeta { User = user };
                     _connections.Add(key, meta);
                 }   
             }
@@ -37,7 +34,7 @@ namespace NetREST.Common.Models.Chat.ChatHubStorage
                     meta = new ChatClientMeta
                     {
                         User = user,
-                        GroupId = groupId,
+                        GroupId = groupId
                     };
                     _connections.Add(key, meta);
                 }  
@@ -57,7 +54,7 @@ namespace NetREST.Common.Models.Chat.ChatHubStorage
                 _connections[key] = new ChatClientMeta
                 {
                     User = user,
-                    GroupId = groupId,
+                    GroupId = groupId
                 };
             }
         }

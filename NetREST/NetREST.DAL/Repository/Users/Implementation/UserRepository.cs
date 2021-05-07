@@ -8,9 +8,9 @@ namespace NetREST.DAL.Repository.Users.Implementation
 {
     public class UsersRepository : IUserRepository
     {
-        private readonly ApplicationContext _db;
+        private readonly ApplicationDbContext _db;
 
-        public UsersRepository(ApplicationContext context)
+        public UsersRepository(ApplicationDbContext context)
         {
             _db = context;
             // if (!_db.Users.Any())

@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using FluentValidation;
 using NetREST.Common.Errors;
 
@@ -9,10 +11,11 @@ namespace NetREST.DTO.SignUp.Validators
         {
             RuleFor(user => user.FirstName)
                 .NotEmpty().WithErrorCode(ErrorCodes.Common.FieldInvalid);
-            RuleFor(user => user.LastName)
-                .NotEmpty().WithErrorCode(ErrorCodes.Common.FieldInvalid);
-            RuleFor(user => user.Age)
-                .NotEmpty().WithErrorCode(ErrorCodes.Common.FieldInvalid);
+            // TODO: uncomment
+            // RuleFor(user => user.LastName)
+            //     .NotEmpty().WithErrorCode(ErrorCodes.Common.FieldInvalid);
+            // RuleFor(user => user.Age)
+            //     .NotEmpty().WithErrorCode(ErrorCodes.Common.FieldInvalid);
             RuleFor(user => user.Email)
                 .NotEmpty().EmailAddress().WithErrorCode(ErrorCodes.Common.FieldInvalid);
             // string pattern = "/^[0-9a-zA-Z~!@#$%^&*_\\-+=`|(){}[\\]:;\"'<>,.?/]+$";
