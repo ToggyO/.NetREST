@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +22,7 @@ namespace NetREST.API.Controllers
 	    {
 		    _handler = handler;
 	    }
-
+	    
 		[HttpGet]
 		[AllowAnonymous]
 		public async Task<Response<PaginationModel<UserDTO>>> GetList([FromQuery] PaginationModel model)

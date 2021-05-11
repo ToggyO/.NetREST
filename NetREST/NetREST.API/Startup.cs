@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,6 +17,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using NetREST.API.Extensions;
 using NetREST.API.Filters;
+using NetREST.API.Middleware;
 using NetREST.BLL.Mappings;
 using NetREST.BLL.Services.WebSocket;
 using NetREST.Common.Settings;
@@ -116,15 +118,16 @@ namespace NetREST.API
             services.AddSignalR();
 
             services.AddControllers(options =>
-            {
-                options.Filters.Add(typeof(ValidateModelAttribute));
-                options.Filters.Add(typeof(StatusCodeFilter));
-            }).AddFluentValidation(
-                fv =>
                 {
-                    ValidatorConfigurationOverload.Override();
-                    fv.RegisterValidatorsFromAssemblyContaining<DTO.DependencyInjectionModule>();
-                });
+                    options.Filters.Add(typeof(ValidateModelAttribute));
+                    options.Filters.Add(typeof(StatusCodeFilter));
+                })
+                .AddFluentValidation(fv =>
+                    {
+                        ValidatorConfigurationOverload.Override();
+                        fv.RegisterValidatorsFromAssemblyContaining<DTO.DependencyInjectionModule>();
+                    });
+
             services.AddDirectoryBrowser();
 
             services.AddSingleton(MappingConfig.GetMapper());
@@ -169,6 +172,9 @@ namespace NetREST.API
 
             logger.LogInformation("EnsureMigrationOfContext");
             app.EnsureMigrationOfContext<ApplicationDbContext>();
+
+            logger.LogInformation("Custom middleware");
+            app.UseMiddleware<ExceptionMiddleware>();
             
             logger.LogInformation("Endpoints");
             app.UseEndpoints(endpoints =>
